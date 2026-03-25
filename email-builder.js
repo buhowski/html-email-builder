@@ -35,26 +35,27 @@ const S = {
 };
 
 // Icons Server Path
-const ICONS_BASE_URL = 'https://buhowski.github.io/js-email-builder/assets';
+const SITE_URL = 'https://buhowski.github.io/js-email-builder';
+const EMAIL_ICONS_URL = `${SITE_URL}/assets/icons`;
 export const icons = {
 	tg: {
-		src: `${ICONS_BASE_URL}/tg.png`,
+		src: `${EMAIL_ICONS_URL}/tg.png`,
 		alt: 'Telegram',
 	},
 	ig: {
-		src: `${ICONS_BASE_URL}/insta.png`,
+		src: `${EMAIL_ICONS_URL}/insta.png`,
 		alt: 'Instagram',
 	},
 	li: {
-		src: `${ICONS_BASE_URL}/in.png`,
+		src: `${EMAIL_ICONS_URL}/in.png`,
 		alt: 'LinkedIn',
 	},
 	em: {
-		src: `${ICONS_BASE_URL}/mail.png`,
+		src: `${EMAIL_ICONS_URL}/mail.png`,
 		alt: 'Gmail',
 	},
 	site: {
-		src: `${ICONS_BASE_URL}/site.png`,
+		src: `${EMAIL_ICONS_URL}/site.png`,
 		alt: 'Website',
 	},
 };
