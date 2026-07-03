@@ -1,8 +1,8 @@
-# HTML Email Builder & Template Showcase
+# HTML Email Showcase
 
-Lightweight email build system with live preview and automated Gmail OAuth2 delivery.
+Email build system with live preview and automated Gmail OAuth2 delivery.
 
-Live: 
+Live: [https://buhowski.github.io/html-email-builder](https://buhowski.github.io/html-email-builder/)
 
 ## Prerequisites
 
