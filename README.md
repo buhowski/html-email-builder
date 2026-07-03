@@ -11,9 +11,9 @@ Node.js 22
 ## Quick Start
 ```bash
 # Install dependencies
-npm i
+npm install
 
-# Development with live reload (localhost:666)
+# Dev with live reload
 npm run dev
 
 # Compile production HTML
@@ -28,10 +28,10 @@ npm run send
 ├── .github/workflows/    # CI/CD pipelines
 ├── assets/               # Static assets
 ├── .env                  # Credentials (never commit)
-├── .env.example          # Environment variables template
+├── .env.example          # Env variables template
 ├── email-builder.js      # Template engine & compiler
 ├── index.html            # Build output
-├── send.js               # OAuth2 mail transport
+├── send.js               # Gmail OAuth2 transport
 ├── server.js             # Live reload server
-└── package.json          # Project dependencies & scripts
+└── package.json
 ```

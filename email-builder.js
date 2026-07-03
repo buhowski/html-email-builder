@@ -263,7 +263,7 @@ export const emailText = [
 		'This system is a modular email builder I developed to streamline deployment, featuring live preview and automated production-grade delivery.',
 	),
 
-	h2('Frontend Developer'),
+	h2('Frontend Starter Pack'),
 
 	linkItem([
 		{ title: 'Portfolio', url: `${LIVE_SITE}` },
