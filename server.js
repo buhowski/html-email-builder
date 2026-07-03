@@ -5,7 +5,6 @@ import chokidar from 'chokidar';
 
 const PORT = 666;
 
-// source file for build
 const SOURCE =
 	process.env.SOURCE ||
 	fs
@@ -14,7 +13,6 @@ const SOURCE =
 		.find((f) => f.startsWith('_email_') && f.endsWith('.js')) ||
 	'email-builder.js';
 
-// inject live reload script
 const inject = (html) =>
 	html.replace(
 		'</body>',
@@ -26,7 +24,6 @@ es.onmessage = () => location.reload();
 
 let clients = [];
 
-// rebuild source and notify clients
 const rebuild = () => {
 	try {
 		execSync(`node ${SOURCE}`);
@@ -38,7 +35,6 @@ const rebuild = () => {
 	}
 };
 
-// server
 http
 	.createServer((req, res) => {
 		if (req.url === '/sse') {
@@ -54,7 +50,15 @@ http
 			return;
 		}
 
-		// determine file to serve
+		if (req.url.startsWith('/assets/')) {
+			const filePath = req.url.slice(1);
+			if (existsSync(filePath)) {
+				const ext = filePath.split('.').pop();
+				res.writeHead(200, { 'Content-Type': `image/${ext}` });
+				return res.end(fs.readFileSync(filePath));
+			}
+		}
+
 		let file =
 			SOURCE === 'email-builder.js'
 				? req.url === '/'
@@ -64,7 +68,7 @@ http
 					? '_generated.html'
 					: req.url.slice(1);
 
-		if (!file.endsWith('.html')) file += '.html';
+		if (!file.includes('.')) file += '.html';
 
 		if (!existsSync(file)) {
 			res.writeHead(404);
@@ -77,8 +81,6 @@ http
 	})
 	.listen(PORT, () => console.log(`http://localhost:${PORT} — ${SOURCE}`));
 
-// watch only the source file for changes
 chokidar.watch(SOURCE).on('change', rebuild);
 
-// initial build
 rebuild();

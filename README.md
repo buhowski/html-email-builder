@@ -1,25 +1,36 @@
-# Email Builder
+# HTML Email Builder & Template Showcase
 
-Static HTML email compiler with live reload.
+Lightweight email build system with live preview and automated Gmail OAuth2 delivery.
 
-## Setup
+Live: 
+
+## Prerequisites
+
+Node.js >= 22
+
+## Quick Start
 ```bash
-npm install
+# Install dependencies
+npm i
+
+# Development with live reload (localhost:666)
+npm run dev
+
+# Compile production HTML
+npm run build
+
+# Send email
+npm run send
 ```
 
-## Usage
-```bash
-npm run build      # one-time build
-npm run dev        # build + live reload
-npm run send       # send email via Gmail OAuth2
+## Structure
 ```
-
-## Files
-```
-html-email-builder/
-├── .env                  # credentials (never commit)
-├── email-builder.js      # HTML compiler
-├── index.html            # build output
-├── send.js               # Gmail sender via OAuth2
-└── server.js             # live reload dev server
+├── assets/               # Static assets
+├── .env                  # Credentials (never commit)
+├── .env.example          # Environment variables template
+├── email-builder.js      # Template engine & compiler
+├── index.html            # Build output
+├── send.js               # OAuth2 mail transport
+├── server.js             # Live reload server
+└── package.json          # Project dependencies & scripts
 ```

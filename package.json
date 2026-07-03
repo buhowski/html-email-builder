@@ -7,7 +7,6 @@
 	"scripts": {
 		"build": "node email-builder.js",
 		"dev": "node server.js",
-		"dev:builder": "SOURCE=email-builder.js node server.js",
 		"send": "node send.js"
 	},
 	"keywords": [],
