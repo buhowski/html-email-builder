@@ -24,7 +24,7 @@ npm run send
 ```
 
 ## Structure
-```
+```bash
 ├── assets/               # Static assets
 ├── .env                  # Credentials (never commit)
 ├── .env.example          # Environment variables template
