@@ -31,9 +31,11 @@ const S = {
 	textBase: `margin: 0; font-size: ${UI.fSize}; line-height: 1.5; letter-spacing: 0.25px; word-spacing: 0.5px; color: ${C.text};`,
 };
 
-// Social media
-const ICONS_PATH = 'assets/icons';
+// Icons Server Path
+const SERVER_SITE_URL = 'https://buhowski.github.io/html-email-builder';
+const ICONS_PATH = `${SERVER_SITE_URL}/assets/icons`;
 
+// Social media links
 export const socialLinks = [
 	{ url: 'https://t.me/olexander_tsiomakh', icon: `${ICONS_PATH}/tg.png`, alt: 'Telegram' },
 	{ url: 'https://www.instagram.com/buhowski', icon: `${ICONS_PATH}/ig.png`, alt: 'Instagram' },
