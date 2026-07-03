@@ -32,7 +32,7 @@ const S = {
 };
 
 // Social media
-const ICONS_PATH = 'assets/icons';
+const ICONS_PATH = 'https://buhowski.github.io/html-email-builder/assets/icons';
 
 export const socialLinks = [
 	{ url: 'https://t.me/olexander_tsiomakh', icon: `${ICONS_PATH}/tg.png`, alt: 'Telegram' },
