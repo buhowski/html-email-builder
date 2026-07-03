@@ -6,7 +6,7 @@ Live Preview: https://buhowski.github.io/html-email-builder
 
 ## Prerequisites
 
-Node.js >= 22
+Node.js 22
 
 ## Quick Start
 ```bash
@@ -25,6 +25,7 @@ npm run send
 
 ## Structure
 ```bash
+├── .github/workflows/    # CI/CD pipelines
 ├── assets/               # Static assets
 ├── .env                  # Credentials (never commit)
 ├── .env.example          # Environment variables template
