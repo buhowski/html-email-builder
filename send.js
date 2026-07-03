@@ -31,33 +31,43 @@ const transporter = nodemailer.createTransport({
 
 async function main() {
 	if (!recipients || recipients.length === 0) {
-		console.log('No recipients found.');
+		console.log('No Receivers.');
 		return;
 	}
 
-	console.log(`Preparing to send ${recipients.length} email(s)...`);
+	console.log(`Receivers ${recipients.length}:`);
+	recipients.forEach((to) => console.log(` → ${to}`));
+
+	let sent = 0;
+	const failed = [];
 
 	for (const to of recipients) {
-		if (!to) {
-			console.warn('Skipping empty email address.');
-			continue;
+		try {
+			await transporter.sendMail({
+				from: `${emailInfo.from} <${process.env.GMAIL_USER}>`,
+				to,
+				subject: emailInfo.subject,
+				html: htmlEmail,
+				text: plainText,
+				headers: {
+					'List-Unsubscribe': `<mailto:${process.env.GMAIL_USER}?subject=unsubscribe>`,
+				},
+			});
+			sent++;
+		} catch (err) {
+			failed.push(to);
+			console.error(`Failed → ${to}: ${err.message}`);
 		}
-
-		await transporter.sendMail({
-			from: `${emailInfo.from} <${process.env.GMAIL_USER}>`,
-			to,
-			subject: emailInfo.subject,
-			html: htmlEmail,
-			text: plainText,
-			headers: {
-				'List-Unsubscribe': `<mailto:${process.env.GMAIL_USER}?subject=unsubscribe>`,
-			},
-		});
-
-		console.log(`Sent → ${to}`);
 	}
 
-	console.log('Done!');
+	console.log(`\nSent Emails: ${sent} \n`);
+
+	if (failed.length > 0) {
+		console.log(`Failed ${failed.length}:`);
+		failed.forEach((to) => console.log(` → ${to}`));
+	}
+
+	console.log(`Done! \n`);
 }
 
 main().catch(console.error);

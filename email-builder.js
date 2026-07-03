@@ -19,7 +19,7 @@ const C = {
 
 const UI = {
 	padX: 28,
-	spacing: 18,
+	spacing: 20,
 	borderRd: 12,
 	font: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
 	fSize: '16px',
@@ -29,6 +29,7 @@ const S = {
 	cell: (t = 0, b = UI.spacing) => `padding: ${t}px ${UI.padX}px ${b}px;`,
 	titleBase: `margin: 0; font-weight: normal; text-transform: uppercase; line-height: 1.3; letter-spacing: 1.4px;`,
 	textBase: `margin: 0; font-size: ${UI.fSize}; line-height: 1.5; letter-spacing: 0.25px; word-spacing: 0.5px; color: ${C.text};`,
+	linkBase: `text-decoration: none; outline: none; display: block;`,
 };
 
 // Icons Server Path
@@ -73,40 +74,37 @@ export const text = (content) => `
 `;
 
 // Links Items
-export const linkItem = (items) => `
-  <tr>
-    <td style="${S.cell(0, 18)}">
-      <table ${tableAttr} width="100%" style="border-radius: 6px; overflow: hidden; background-color: ${C.listLinkBg};">
-        ${items
-					.map(
-						(item, i) => `
-          <tr>
-            <td style="font-size: ${UI.fSize}; line-height: 1.3; letter-spacing: 0.8px; vertical-align: middle;">
-              <a href="${item.url}" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none; outline: none; color: ${C.link}; padding: 14px 0 14px 20px;">
-                ${
-									item.genre
-										? `<span style="display: block; margin: 0 0 5px; padding: 0; color: ${C.copy}; font-size: 10px; text-transform: uppercase; line-height: 1.3; font-weight: 300;">${item.genre}</span>`
-										: ''
-								}
-                ${item.title}
-              </a>
-            </td>
-            <td align="right" width="40" style="font-size: 23px; line-height: 0.9; vertical-align: middle;">
-              <a href="${item.url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; outline: none; color: ${C.accent1}; display: block; padding: 14px 18px 14px 0;">→</a>
-            </td>
-          </tr>
-          ${
-						i < items.length - 1
-							? `<tr><td colspan="2" height="1" style="background-color: ${C.bodyBg}; font-size: 1px; line-height: 1px; height: 1px;">&nbsp;</td></tr>`
-							: ''
-					}
-        `,
-					)
-					.join('')}
-      </table>
-    </td>
-  </tr>
-`;
+export const linkItem = (items) => {
+	const padY = '14px';
+	const padY2 = '22px';
+
+	return `
+    <tr>
+      <td style="${S.cell(0, 20)}">
+        <table ${tableAttr} width="100%" style="border-radius: 6px; overflow: hidden; background-color: ${C.listLinkBg};">
+          ${items
+						.map(
+							(item, i) => `
+            <tr>
+              <td style="font-size: ${UI.fSize}; line-height: 1.3; letter-spacing: 0.8px; vertical-align: middle;">
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" style="${S.linkBase} color: ${C.link}; padding: ${padY} 0 ${padY} 20px;">
+                  ${item.genre ? `<span style="display: block; margin: 0 0 5px; color: ${C.copy}; font-size: 10px; text-transform: uppercase; line-height: 1.3; font-weight: 300;">${item.genre}</span>` : ''}
+                  ${item.title}
+                </a>
+              </td>
+              <td align="right" style="font-size: 23px; line-height: 1; vertical-align: middle;">
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" style="${S.linkBase} color: ${C.accent1}; padding:  ${item.genre ? padY2 : padY} 18px ${item.genre ? padY2 : padY} 5px">→</a>
+              </td>
+            </tr>
+            ${i < items.length - 1 ? `<tr><td colspan="2" height="1" style="background-color: ${C.bodyBg}; font-size: 1px; line-height: 1px; height: 1px;">&nbsp;</td></tr>` : ''}
+          `,
+						)
+						.join('')}
+        </table>
+      </td>
+    </tr>
+  `;
+};
 
 // Bullet list
 export const bulletList = (items) => `
@@ -145,7 +143,7 @@ export const footer = (links = socialLinks) => {
       <td style="font-size: 0; line-height: 0; height: 22px;">&nbsp;</td>
     </tr>
     <tr>
-      <td align="center" style="background: ${C.footerBg}; padding: 40px ${UI.padX}px 18px;">
+      <td align="center" style="background: ${C.footerBg}; padding: 42px ${UI.padX}px 18px;">
         <table ${tableAttr} width="100%">
           <tr>
             <td align="center">
@@ -198,8 +196,8 @@ export const footer = (links = socialLinks) => {
 // Preheader content
 export const preheader = (text) => {
 	// Hide preview text
-	const invisibleTail = '&nbsp;&zwnj;'.repeat(200);
 	const combinedStyles = `display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; line-height: 1px; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; color: ${C.cardBg};`;
+	const invisibleTail = '&nbsp;&zwnj;'.repeat(200);
 
 	return `
     <tr style="display: none; mso-hide: all;">
@@ -251,7 +249,7 @@ export const compile = (blocks, lang = 'en') => `<!DOCTYPE html>
 </body>
 </html>`;
 
-// Email content
+// Email Content
 export const emailText = [
 	preheader('Engineering, media, and counterculture ecosystem.'),
 
@@ -300,8 +298,8 @@ export const emailText = [
 
 // Metadata for sending
 export const emailInfo = {
-	from: 'Olexander',
-	subject: 'Email Subject',
+	from: 'User',
+	subject: 'TEST: HTML Email Showcase',
 };
 
 // Recipients list
@@ -309,7 +307,7 @@ export const recipients = [
 	// Dev Test
 	process.env.GMAIL_USER,
 
-	// Other
+	// Recievers
 	// 'client@example.com'
 ];
 

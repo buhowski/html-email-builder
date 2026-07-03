@@ -1,6 +1,6 @@
 {
 	"name": "html-email-builder",
-	"version": "1.0.0",
+	"version": "666",
 	"description": "Static HTML email compiler with live reload",
 	"main": "email-builder.js",
 	"type": "module",
