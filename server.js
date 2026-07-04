@@ -11,9 +11,13 @@ const SOURCE = process.argv[2] || 'templates/index.js';
 
 // Dev tools injection
 const injectDevTools = (html) => {
-	if (!existsSync(senderTools)) return html;
-	const tools = fs.readFileSync(senderTools, 'utf8');
-	return html.replace('</body>', `${tools}</body>`);
+	try {
+		const tools = fs.readFileSync(senderTools, 'utf8');
+		return html.replace('</body>', `${tools}</body>`);
+	} catch (e) {
+		console.warn('Sender form file not found, skipping injection.');
+		return html;
+	}
 };
 
 let clients = [];
@@ -116,7 +120,7 @@ http
 
 // Watcher
 chokidar
-	.watch(['components', 'templates', 'dev'], { ignored: /node_modules/ })
+	.watch(['components', 'templates', 'helpers'], { ignored: /node_modules/ })
 	.on('change', (path) => {
 		rebuild(path);
 	});

@@ -1,5 +1,6 @@
+<!-- Sending Emails Panel -->
 <style>
-  .dev-tools-panel {
+  .sender-panel {
     position: fixed;
     top: 10px;
     right: 10px;
@@ -13,9 +14,10 @@
     display: flex;
     width: 310px;
     box-sizing: border-box;
+    user-select: none;
   }
 
-  .dev-tools-input {
+  .sender-panel__input {
     padding: 8px 6px;
     border: 1px solid #494949;
     background: #131313;
@@ -25,11 +27,11 @@
     width: 100%;
   }
 
-  .dev-tools-input:focus {
+  .sender-panel__input:focus {
     border-color: #ffca8a;
   }
 
-  .dev-tools-btn {
+  .sender-panel__btn {
     padding: 8px 12px;
     background: #ffbc6a;
     color: #0c0c0c;
@@ -41,11 +43,11 @@
     transition: opacity 0.2s;
   }
 
-  .dev-tools-btn:hover {
+  .sender-panel__btn:hover {
     opacity: 0.8;
   }
 
-  .dev-tools-btn:disabled {
+  .sender-panel__btn:disabled {
     opacity: 0.2;
     pointer-events: none;
     cursor: not-allowed;
@@ -94,7 +96,8 @@
   }
 </script>
 
-<div class="dev-tools-panel">
-  <input id="emailSenderInput" class="dev-tools-input" type="email" placeholder="email@domain.com">
-  <button id="emailSenderBtn" class="dev-tools-btn" onclick="sendTestEmail()">Send</button>
+<div class="sender-panel">
+  <input id="emailSenderInput" class="sender-panel__input" type="email" placeholder="email@domain.com">
+
+  <button id="emailSenderBtn" class="sender-panel__btn" onclick="sendTestEmail()">Send</button>
 </div>

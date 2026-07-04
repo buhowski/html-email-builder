@@ -58,6 +58,7 @@ export const EmailCompiler = (blocks, lang = 'en') => `<!DOCTYPE html>
   <meta name="x-apple-disable-message-reformatting">
   <meta name="color-scheme" content="dark">
   <meta name="supported-color-schemes" content="dark">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
   <title>HTML Email Showcase</title>
   <style>
     :root { color-scheme: dark; supported-color-schemes: dark; }
