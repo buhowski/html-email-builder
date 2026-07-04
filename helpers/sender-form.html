@@ -1,0 +1,100 @@
+<style>
+  .dev-tools-panel {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #202020;
+    padding: 10px 12px;
+    border-radius: 10px;
+    z-index: 9999;
+    font-family: sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #383838;
+    display: flex;
+    width: 310px;
+    box-sizing: border-box;
+  }
+
+  .dev-tools-input {
+    padding: 8px 6px;
+    border: 1px solid #494949;
+    background: #131313;
+    color: #ececec;
+    border-radius: 6px;
+    outline: none;
+    width: 100%;
+  }
+
+  .dev-tools-input:focus {
+    border-color: #ffca8a;
+  }
+
+  .dev-tools-btn {
+    padding: 8px 12px;
+    background: #ffbc6a;
+    color: #0c0c0c;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 12px;
+    transition: opacity 0.2s;
+  }
+
+  .dev-tools-btn:hover {
+    opacity: 0.8;
+  }
+
+  .dev-tools-btn:disabled {
+    opacity: 0.2;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+</style>
+
+<script>
+  const es = new EventSource("/sse");
+  es.onmessage = () => location.reload();
+
+  async function sendTestEmail() {
+    const input = document.getElementById('emailSenderInput');
+    const btn = document.getElementById('emailSenderBtn');
+
+    if (!input.value) return alert('Enter email');
+
+    const path = window.location.pathname;
+    const templateName = path === '/' ? 'index' : path.slice(1);
+
+    btn.disabled = true;
+    btn.innerText = 'Sending...';
+
+    try {
+      const res = await fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: input.value,
+          template: templateName
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.ok) {
+        alert('Sent successfully to ' + input.value);
+      } else {
+        alert('Error: ' + data.error);
+      }
+    } catch (e) {
+      alert('Network error: ' + e.message);
+    } finally {
+      btn.disabled = false;
+      btn.innerText = 'Send';
+    }
+  }
+</script>
+
+<div class="dev-tools-panel">
+  <input id="emailSenderInput" class="dev-tools-input" type="email" placeholder="email@domain.com">
+  <button id="emailSenderBtn" class="dev-tools-btn" onclick="sendTestEmail()">Send</button>
+</div>

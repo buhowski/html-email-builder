@@ -6,7 +6,7 @@ import chokidar from 'chokidar';
 import { sendEmailTo } from './mailer.js';
 
 const PORT = 666;
-const senderTools = 'dev/sender-form.html';
+const senderTools = 'helpers/sender-form.html';
 const SOURCE = process.argv[2] || 'templates/index.js';
 
 // Dev tools injection
