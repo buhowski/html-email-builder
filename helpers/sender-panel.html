@@ -58,7 +58,7 @@
   const es = new EventSource("/sse");
   es.onmessage = () => location.reload();
 
-  async function sendTestEmail() {
+  async function sendEmail() {
     const input = document.getElementById('emailSenderInput');
     const btn = document.getElementById('emailSenderBtn');
 
@@ -99,5 +99,5 @@
 <div class="sender-panel">
   <input id="emailSenderInput" class="sender-panel__input" type="email" placeholder="email@domain.com">
 
-  <button id="emailSenderBtn" class="sender-panel__btn" onclick="sendTestEmail()">Send</button>
+  <button id="emailSenderBtn" class="sender-panel__btn" onclick="sendEmail()">Send</button>
 </div>
