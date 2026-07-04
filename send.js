@@ -1,7 +1,8 @@
 import 'dotenv/config';
-import nodemailer from 'nodemailer';
-import { htmlToText } from 'html-to-text';
-import { compile, emailText, emailInfo, recipients } from './email-builder.js';
+import { sendEmailTo } from './mailer.js';
+
+// Get template name from command line
+const templateName = process.argv[2] || 'index';
 
 const requiredEnv = ['GMAIL_USER', 'GMAIL_CLIENT_ID', 'GMAIL_CLIENT_SECRET', 'GMAIL_REFRESH_TOKEN'];
 const missingEnv = requiredEnv.filter((key) => !process.env[key]);
@@ -11,25 +12,9 @@ if (missingEnv.length > 0) {
 	process.exit(1);
 }
 
-const htmlEmail = compile(emailText, 'en');
-
-const plainText = htmlToText(htmlEmail, {
-	wordwrap: 80,
-	selectors: [{ selector: 'img', format: 'skip' }],
-});
-
-const transporter = nodemailer.createTransport({
-	service: 'gmail',
-	auth: {
-		type: 'OAuth2',
-		user: process.env.GMAIL_USER,
-		clientId: process.env.GMAIL_CLIENT_ID,
-		clientSecret: process.env.GMAIL_CLIENT_SECRET,
-		refreshToken: process.env.GMAIL_REFRESH_TOKEN,
-	},
-});
-
 async function main() {
+	const { recipients } = await import(`./templates/${templateName}.js`);
+
 	if (!recipients || recipients.length === 0) {
 		console.log('No Receivers.');
 		return;
@@ -43,16 +28,7 @@ async function main() {
 
 	for (const to of recipients) {
 		try {
-			await transporter.sendMail({
-				from: `${emailInfo.from} <${process.env.GMAIL_USER}>`,
-				to,
-				subject: emailInfo.subject,
-				html: htmlEmail,
-				text: plainText,
-				headers: {
-					'List-Unsubscribe': `<mailto:${process.env.GMAIL_USER}?subject=unsubscribe>`,
-				},
-			});
+			await sendEmailTo(to, templateName);
 			sent++;
 		} catch (err) {
 			failed.push(to);

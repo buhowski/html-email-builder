@@ -1,8 +1,8 @@
-# HTML Email Template
+# HTML Email Engineering
 
-Modular system for building and sending HTML emails: live preview during development and automated delivery via Gmail OAuth2.
+Modular system for building and sending email templates. Features live-reload development, lazy-compilation of JS-based designs, and automated delivery via Gmail OAuth2.
 
-Live Preview: https://buhowski.github.io/html-email-builder
+Design Showcase: https://buhowski.github.io/html-email-builder
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ Node.js 22
 # Install dependencies
 npm install
 
-# Dev with live reload
+# Dev mode (live preview at http://localhost:666)
 npm run dev
 
 # Compile production HTML
@@ -25,13 +25,14 @@ npm run send
 
 ## Structure
 ```bash
-├── .github/workflows/    # CI/CD pipelines
 ├── assets/               # Static assets
-├── .env                  # Credentials (never commit)
-├── .env.example          # Env variables template
-├── email-builder.js      # Template engine & compiler
-├── index.html            # Build output
-├── send.js               # Gmail OAuth2 transport
-├── server.js             # Live reload server
-└── package.json
+├── components/           # Reusable UI blocks
+├── dev/                  # Development tools
+├── templates/            # Email templates (.js)
+├── .env                  # Credentials (NEVER COMMIT)
+├── .env.example          # Credentials Template
+├── index.html            # Builded HTML EMAIL
+├── mailer.js             # OAuth2 transport logic
+├── send.js               # CLI sender script
+└── server.js             # Dev server & live reload
 ```

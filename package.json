@@ -1,15 +1,13 @@
 {
 	"name": "html-email-builder",
-	"version": "666",
-	"description": "Static HTML email compiler with live reload",
-	"main": "email-builder.js",
+	"version": "6.6.6",
+	"description": "Email Engineering System",
 	"type": "module",
 	"scripts": {
-		"build": "node email-builder.js",
+		"build": "for f in templates/*.js; do node \"$f\" && echo \"Generated: $(basename \"${f%.js}.html\")\"; done",
 		"dev": "node server.js",
 		"send": "node send.js"
 	},
-	"keywords": [],
 	"author": "Olexander Tsiomakh",
 	"license": "ISC",
 	"dependencies": {
