@@ -28,10 +28,10 @@ export const emailText = [
 
 	EmailPadding(),
 
-	EmailParagraph('HTML Email Showcase.'),
+	EmailParagraph('HTML Email Template.'),
 
 	EmailParagraph(
-		'This system is a modular easring hot-reload live preview and an integrated test-delivery module.',
+		'A production-grade showcase built via a modular email engine with live-reload development and programmatic OAuth2 distribution.',
 	),
 
 	EmailHeading2('Frontend Starter Pack'),
@@ -41,10 +41,10 @@ export const emailText = [
 		{ title: 'CV', url: `${LIVE_SITE}cv` },
 	]),
 
-	EmailHeading3('SUMMARY'),
+	EmailHeading3('In a nutshell'),
 
 	EmailBulletList([
-		'Semantic, pixel-perfect, responsive UI development',
+		'Semantic, responsive, and dynamic UI development',
 		'High-performance UX optimization',
 		'Revitalization of legacy codebases',
 		'AI-augmented development workflows',
