@@ -9,3 +9,6 @@ package-lock.json
 
 /*.html
 !/index.html
+
+templates/**/*.js
+!templates/index.js

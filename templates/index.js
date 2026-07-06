@@ -53,7 +53,7 @@ export const emailText = [
 	EmailHeading2('Counterculture Ecosystem'),
 
 	EmailParagraph(
-		'Developed a market colonization strategy and launch-ready concepts for magazine, film, gamedev, and tech',
+		'Developed a market colonization strategy and launch-ready concepts for magazine, film, gamedev, and tech.',
 	),
 
 	EmailLinkItem([
