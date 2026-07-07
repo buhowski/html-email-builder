@@ -2,7 +2,7 @@
 
 Modular system for building and sending emails. Features component template design, an integrated UI panel for instant email testing, and automated delivery via Gmail OAuth2.
 
-- Email that users receive: [Design Showcase](https://buhowski.github.io/html-email-builder)
+- Users receive: [HTML Email Design](https://buhowski.github.io/html-email-builder)
 
 ## Prerequisites
 
@@ -28,10 +28,10 @@ npm run send
 ```bash
 ├── assets/               # Static assets
 ├── components/           # Reusable UI blocks
-├── dev/                  # Development tools
-├── templates/            # Email templates (.js)
+├── helpers/              # Dev tools
+├── templates/            # Source layouts (`name.js` auto-compiles to `./name.html`)
+├── index.html            # Compiled production build
 ├── .env.example          # Credentials Template
-├── index.html            # Builded HTML EMAIL
 ├── mailer.js             # OAuth2 transport logic
 ├── send.js               # CLI sender script
 └── server.js             # Dev server & live reload

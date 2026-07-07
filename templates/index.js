@@ -16,7 +16,7 @@ export const emailInfo = {
 
 // Receivers list
 export const recipients = [
-	process.env.GMAIL_USER, // Dev Test
+	process.env.GMAIL_USER, // Own Email Test
 
 	// Receivers
 	// 'client@example.com'
@@ -28,7 +28,7 @@ export const emailText = [
 
 	EmailPadding(),
 
-	EmailParagraph('HTML Email Template.'),
+	EmailParagraph('Exact email received by users.'),
 
 	EmailParagraph(
 		'A production-grade showcase built via a modular email engine with live-reload development and programmatic OAuth2 distribution.',
